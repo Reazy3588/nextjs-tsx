@@ -1,4 +1,4 @@
-// import { Button } from 'flowbite-react'
+import { Button } from 'flowbite-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function page () {
   return (
     <div>
-      <h1 className='mt-30'>about1</h1>
+      <h1 className='mt-30'>about</h1>
     </div>
   )
 }
