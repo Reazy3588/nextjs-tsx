@@ -3,52 +3,57 @@
 import CardProductDetail from '@/app/components/card/CardProductDetail';
 
 type PropsParams = {
-  params: Promise<{ id: string }>; // Next.js provides params as a Promise
+  params: Promise<{ id: string }>;
   searchParams: any;
 };
 
-const ENDPOINT = 'https://fakestoreapi.com/products/';
+// Switching to DummyJSON for better stability on Vercel
+const ENDPOINT = 'https://dummyjson.com/products/';
 
 // Safe fetch function
 export const getData = async (id: number) => {
   try {
-    const res = await fetch(`${ENDPOINT}${id}`, { cache: 'no-store' });
+    // Note: DummyJSON doesn't block Vercel like FakeStoreAPI does
+    const res = await fetch(`${ENDPOINT}${id}`, { 
+        cache: 'no-store',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
 
     if (!res.ok) {
+      // If it still fails, this will help you see why in Vercel Logs
       const text = await res.text();
-      console.error('API ERROR:', text);
-      throw new Error('Failed to fetch product');
+      console.error(`API ERROR (${res.status}):`, text.substring(0, 100)); 
+      throw new Error(`Failed to fetch product: ${res.status}`);
     }
 
     return await res.json();
   } catch (err) {
     console.error('Fetch failed:', err);
-    throw new Error('Unable to fetch product data');
+    throw new Error('Unable to fetch product data at this time');
   }
 };
 
-// Server component page
 export default async function Detail({ params }: PropsParams) {
-  // 1️⃣ unwrap the params Promise
   const resolvedParams = await params;
-
-  // 2️⃣ parse ID safely
   const id = Number(resolvedParams.id);
+
   if (isNaN(id)) {
-    throw new Error('Invalid product ID');
+    return <div className="h-screen grid place-content-center">Invalid product ID</div>;
   }
 
-  // 3️⃣ fetch product data safely
   const data = await getData(id);
 
-  // 4️⃣ render
   return (
     <div className="h-screen grid place-content-center text-white">
       <CardProductDetail
         title={data?.title || 'No Title'}
         description={data?.description || 'No description'}
-        image={data?.image || ''}
+        // DummyJSON uses .images (array) or .thumbnail. 
+        // We use || to stay compatible with both APIs.
+        image={data?.image || data?.thumbnail || (data?.images?.[0]) || ''}
       />
     </div>
   );
-}
+};
