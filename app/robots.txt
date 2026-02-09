@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /private/
+Disallow: /dsahboard
+Sitemap: https://nextjs-tsx-kappa.vercel.app/sitemap.xml

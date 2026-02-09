@@ -3,6 +3,7 @@ import { ConfirmIcon } from '@/app/components/icons/FontAwsome'
 import React from 'react'
 import Button from './components/Button'
 // ADD THIS IMPORT
+// link http://localhost:3000/activate-confirm-email/any-value-here
 
 
 type Props = {

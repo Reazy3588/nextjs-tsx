@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function page () {
   return (
     <div>
-      <h1 className='mt-30'>about1</h1>
+      <h1 className='h-screen grid place-content-center text-6xl'>about</h1>
     </div>
   )
 }

@@ -1,13 +1,13 @@
 import React from 'react'
 
-const page = () => {
+export default function page () {
   return (
     <div>
-      <h1>
+      <h1 className='h-screen grid place-content-center text-6xl'>
         home page
       </h1>
     </div>
   )
 }
 
-export default page
+
