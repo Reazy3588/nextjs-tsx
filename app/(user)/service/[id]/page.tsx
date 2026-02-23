@@ -1,6 +1,6 @@
 // app/(user)/service/[id]/page.tsx
 
-import CardProductDetail from '@/app/components/card/CardProductDetail';
+import CardProductDetail from '@/components/card/CardProductDetail';
 import { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
@@ -62,6 +62,7 @@ export default async function Detail({ params }: Props) {
   return (
     <div className="h-screen grid place-content-center text-white">
       <CardProductDetail
+        id={data.id}
         title={data.title || 'No Title'}
         description={data.description || 'No description'}
         image={data.thumbnail || (data.images && data.images[0]) || ''}

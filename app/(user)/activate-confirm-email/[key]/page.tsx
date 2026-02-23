@@ -1,4 +1,4 @@
-import { ConfirmIcon } from '@/app/components/icons/FontAwsome'
+import { ConfirmIcon } from '@/components/icons/FontAwsome'
 
 import React from 'react'
 import Button from './components/Button'

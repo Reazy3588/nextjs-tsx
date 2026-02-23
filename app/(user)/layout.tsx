@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import "flowbite";
-import NavbarComponent from "../components/navbar/NavbarComponent";
+import NavbarComponent from "../../components/navbar/NavbarComponent";
 import { Suspense } from "react";
 import Loading from "./loading";
 
 import { inter, suwannaphum } from './font';
+import StoreProvider from "../StoreProvider";
 
 
 
@@ -41,12 +42,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${suwannaphum.variable}`}>
-        <header>
+        <StoreProvider>
+          <header>
           <NavbarComponent/>
         </header>
 <Suspense fallback={<Loading/>}>
           {children}
         </Suspense>
+        </StoreProvider>
       </body>
     </html>
   );

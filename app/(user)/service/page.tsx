@@ -1,8 +1,9 @@
 "use client"
 
-import CardProduct from "@/app/components/card/CardProduct"
+import CardProduct from "@/components/card/CardProduct"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useAppSelector } from "@/redux/hooks"
 
 // OPTION A: More stable API (Recommended)
 const ENDPOINT = "https://dummyjson.com/products" 
@@ -11,9 +12,11 @@ const ENDPOINT = "https://dummyjson.com/products"
 // const ENDPOINT = "https://fakestoreapi.com/products"
 
 export default function Service() {
+  // const carts = useAppSelector(state=>state);
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true) // Added loading state
   const router = useRouter()
+  // console.log(carts);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -71,6 +74,7 @@ export default function Service() {
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <CardProduct
+            id={product.id}
             key={product.id}
             title={product.title}
             // DummyJSON uses .thumbnail, FakeStoreAPI uses .image

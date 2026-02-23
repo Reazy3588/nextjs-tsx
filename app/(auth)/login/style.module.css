@@ -1,0 +1,76 @@
+@reference "tailwindcss";
+
+.container {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem 1rem;
+  
+  /* The Background Fix */
+  background: radial-gradient(circle at center, #1e293b 0%, #080c14 100%);
+  background-attachment: fixed; /* THIS KEEPS IT FULL SCREEN */
+  background-size: cover;
+  
+  /* Ensure it starts from the absolute top-left */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.formWrapper {
+  @apply w-full max-w-[460px] flex flex-col;
+  @apply bg-[#111827]/60 backdrop-blur-3xl;
+  @apply border border-white/5 rounded-[3.5rem];
+  @apply p-10 sm:p-14;
+  @apply shadow-[0_50px_100px_-20px_rgba(0,0,0,1)];
+  
+  /* Ensure the card stays centered and doesn't push the screen width */
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  @apply text-3xl font-bold text-center text-white mb-10 tracking-tight;
+}
+
+.form {
+  @apply w-full flex flex-col gap-6; /* Consistent vertical spacing */
+}
+
+.inputWrapper {
+  @apply w-full flex flex-col relative;
+}
+
+.label {
+  @apply text-[10px] uppercase tracking-[0.2em] font-black text-white/40 mb-2 ml-1;
+}
+
+.input {
+  @apply w-full py-4 px-6 rounded-2xl;
+  @apply bg-white/[0.03] border border-white/10;
+  @apply text-white placeholder-white/20 outline-none;
+  @apply transition-all duration-300 ease-out;
+  
+  /* Prevent horizontal overflow */
+  box-sizing: border-box; 
+}
+
+.input:focus {
+  @apply bg-white/[0.08] border-blue-500/50;
+  @apply ring-[6px] ring-blue-500/10;
+}
+
+.button {
+  @apply w-full mt-4 py-4 rounded-2xl;
+  @apply bg-gradient-to-br from-blue-600 to-indigo-700;
+  @apply text-white font-bold text-base tracking-wide shadow-xl;
+  @apply transition-all duration-300 hover:brightness-110 active:scale-[0.98];
+}
+
+.error {
+  @apply text-[11px] text-red-400 font-medium mt-1.5 ml-1;
+}
